@@ -1,11 +1,13 @@
 (function () {
-  var el = document.getElementById("members-count");
-  if (!el) return;
+  var els = document.querySelectorAll("#members-count, [data-members]");
+  if (!els.length) return;
 
   var API = "https://club-anglais-backend.onrender.com/public/stats";
   var KEY = "members-count";
 
-  function show(n) { el.textContent = String(n); }
+  function show(n) {
+    els.forEach(function (el) { el.textContent = String(n); });
+  }
 
   // Dernier chiffre connu, affiché tout de suite lors des visites suivantes
   try {
@@ -14,7 +16,7 @@
   } catch (e) {}
 
   // Le backend gratuit peut mettre ~30 s à se réveiller : on attend jusqu'à 60 s.
-  // Pendant ce temps, la valeur d'origine ("85+") reste affichée.
+  // Pendant ce temps, les valeurs d'origine restent affichées.
   var ctrl = new AbortController();
   var timer = setTimeout(function () { ctrl.abort(); }, 60000);
 
