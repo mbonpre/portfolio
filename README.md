@@ -58,3 +58,9 @@ Le site est statique : il suffit de publier le contenu du dépôt sur un héberg
 
 - GitHub : [mbonpre](https://github.com/mbonpre)
 - LinkedIn : [Précieux Namboni](https://www.linkedin.com/in/precieux-namboni-ab66843b9)
+## Points techniques
+
+- **Compteur de membres automatique** : le nombre de membres du club d'anglais est lu en direct depuis l'API du club (route `GET /public/stats`, qui ne renvoie qu'un nombre, mis en cache 10 minutes). Si l'API ne répond pas, la valeur affichée par défaut reste en place, donc le site ne casse jamais.
+- **Contacts protégés** : les numéros WhatsApp des personnes citées ne sont pas dans le code. Les boutons passent par une redirection côté API (`/public/wa/...`), les numéros étant stockés dans des variables d'environnement.
+- **Politique de sécurité du contenu (CSP)** stricte dans `_headers` : seuls les scripts du site et l'adresse de l'API du club sont autorisés.
+- **Code séparé par rôle** : HTML, CSS et un fichier JavaScript par fonctionnalité, sans framework ni étape de compilation.
