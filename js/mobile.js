@@ -13,3 +13,14 @@ function lire(){
     p.after(bt)})}
 if(document.readyState==="complete")lire();else addEventListener("load",lire);
 })();
+
+(function(){
+if(!matchMedia("(max-width:55.99rem)").matches)return;
+[".training-steps",".fgrid",".packs"].forEach(function(s){
+  var c=document.querySelector(s);
+  if(!c||(c.previousElementSibling&&c.previousElementSibling.classList.contains("swipehint")))return;
+  var h=document.createElement("p");h.className="swipehint";
+  h.innerHTML='Faites glisser pour voir la suite <i aria-hidden="true">\u2192</i>';
+  c.parentNode.insertBefore(h,c);
+  c.addEventListener("scroll",function f(){if(c.scrollLeft>24){h.classList.add("gone");c.removeEventListener("scroll",f)}},{passive:true})})
+})();

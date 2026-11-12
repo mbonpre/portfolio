@@ -250,3 +250,18 @@ footer{padding:3rem 0 2.5rem;color:var(--mut);font-size:.9rem;text-align:center}
  .mbar .btn{flex:1;justify-content:center;padding:.65rem .8rem}
  body{padding-bottom:4.6rem}
 }
+
+/* ===== indices visuels : ce qui est cliquable ou glissable ===== */
+.swipehint{display:none}
+@keyframes nudge{50%{box-shadow:0 0 0 .35rem color-mix(in srgb,var(--ac) 22%,transparent)}}
+@keyframes nudgex{50%{transform:translateX(5px)}}
+@media(max-width:55.99rem){
+ .cert-box summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1rem;border:1px solid var(--ac);border-radius:14px;background:color-mix(in srgb,var(--ac) 10%,transparent);font-weight:600;cursor:pointer;margin-bottom:.8rem}
+ .cert-box summary::-webkit-details-marker{display:none}
+ .cert-box summary::after{content:"Voir \2304";flex:none;font:500 .85rem var(--mono);color:var(--ac);white-space:nowrap}
+ .cert-box details[open] summary::after{content:"Masquer \2303"}
+ .cert-box details:not([open]) summary{animation:nudge 1.6s ease-in-out .8s 2}
+ .swipehint{display:flex;align-items:center;gap:.4rem;font:500 .78rem var(--mono);color:var(--mut);margin:.1rem 0 .5rem}
+ .swipehint i{font-style:normal;animation:nudgex 1.4s ease-in-out infinite}
+ .swipehint.gone{display:none}
+}
